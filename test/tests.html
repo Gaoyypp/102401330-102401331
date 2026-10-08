@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>单元测试 - 校园失物招领（Mocha + Chai）</title>
+  <link rel="stylesheet" href="lib/mocha.css">
+  <style>
+    body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; margin: 16px; background:#f7f8fa; }
+    .test-head { max-width: 960px; margin: 0 auto 10px; }
+    .test-head h1 { font-size: 20px; }
+    .test-head p { color: #666; font-size: 13px; }
+    #mocha { max-width: 960px; margin: 0 auto; background:#fff; border-radius: 10px; padding: 18px 22px; box-shadow: 0 1px 6px rgba(0,0,0,.06); }
+  </style>
+</head>
+<body>
+  <div class="test-head">
+    <h1>校园失物招领系统 · 单元测试报告</h1>
+    <p>测试框架：Mocha 10 + Chai 4（本地 lib，无需联网）。被测对象：js/utils.js、js/storage.js。</p>
+  </div>
+  <div id="mocha"></div>
+
+  <script src="lib/mocha.js"></script>
+  <script src="lib/chai.js"></script>
+  <script>mocha.setup('bdd');</script>
+
+  <!-- 被测源码 -->
+  <script src="../js/utils.js"></script>
+  <script src="../js/storage.js"></script>
+
+  <!-- 测试用例 -->
+  <script src="tests.js"></script>
+
+  <script>
+    // 源码通过 <script> 引入会挂载少量全局变量，显式告知 Mocha 这些不是泄漏
+    mocha.globals(['AppUtils', 'Store', 'CATEGORY_ICON', 'toast', 'copyText',
+      'compressImage', 'highlightNav']);
+    mocha.run(function (failures) {
+      document.title = failures ? '❌ 测试未全部通过（' + failures + '）' : '✅ 全部测试通过';
+    });
+  </script>
+</body>
+</html>
