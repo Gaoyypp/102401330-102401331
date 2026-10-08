@@ -1,0 +1,15 @@
+# 操作系统 / 编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.log
+
+# 预览与临时目录
+.preview/
+node_modules/
+
+# 单元测试无需上传（按作业要求保留 test/ 源码，忽略运行时缓存）
+.nyc_output/
+coverage/
