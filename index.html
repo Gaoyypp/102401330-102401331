@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校园失物招领 - 首页</title>
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">🔍</span>
+        <span class="brand-text">校园失物招领</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="publish.html">发布信息</a>
+        <a href="my-posts.html">我的发布</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>校园失物招领信息墙</h1>
+      <p>集中浏览校园里的寻物与招领信息，物品找回或归还后请发布者及时更新状态，减少无效联系。</p>
+    </div>
+
+    <!-- 统计概览 -->
+    <section class="stats" id="stats"></section>
+
+    <!-- 搜索与筛选 -->
+    <section class="filter-panel">
+      <div class="search-row">
+        <div class="search-box">
+          <span class="icon">🔎</span>
+          <input type="text" id="keyword" placeholder="搜索物品名称、地点、描述，多个关键词用空格分隔（如：校园卡 图书馆）" autocomplete="off">
+        </div>
+        <button class="btn btn-primary" id="btn-search">搜索</button>
+      </div>
+      <div class="filter-row">
+        <div class="tabs" id="type-tabs">
+          <button type="button" data-type="all" class="active">全部</button>
+          <button type="button" data-type="lost">🧡 寻物启事</button>
+          <button type="button" data-type="found">💙 失物招领</button>
+        </div>
+        <select id="category">
+          <option value="all">全部类别</option>
+          <option value="card">证件卡片</option>
+          <option value="electronics">电子设备</option>
+          <option value="books">书籍文具</option>
+          <option value="keys">钥匙</option>
+          <option value="clothing">衣物配饰</option>
+          <option value="other">其他物品</option>
+        </select>
+        <select id="status">
+          <option value="all">全部状态</option>
+          <option value="active">进行中</option>
+          <option value="resolved">已结束</option>
+        </select>
+        <input type="text" id="location" placeholder="按地点筛选，如：图书馆" style="padding:9px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:14px;outline:none;min-width:180px;">
+        <button class="btn btn-ghost btn-sm" id="btn-reset">重置条件</button>
+        <a class="btn btn-orange btn-sm" href="publish.html" style="margin-left:auto;">＋ 发布信息</a>
+      </div>
+    </section>
+
+    <div class="result-count" id="result-count"></div>
+
+    <!-- 信息列表 -->
+    <section class="post-grid" id="post-grid"></section>
+
+    <!-- 空状态 -->
+    <section class="empty" id="empty" style="display:none;">
+      <div class="emo">🔍</div>
+      <h3>没有找到符合条件的信息</h3>
+      <p id="empty-tip">换个关键词试试，或重置筛选条件；如果是你丢了东西，不妨发布一条寻物启事。</p>
+      <a class="btn btn-primary" href="publish.html">发布一条信息</a>
+    </section>
+  </main>
+
+  <div class="footer">校园失物招领 · 2026 秋软件工程结对作业 · 数据仅保存在本机浏览器中</div>
+  <div id="toast"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
