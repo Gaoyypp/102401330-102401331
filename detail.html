@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>信息详情 - 校园失物招领</title>
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">🔍</span>
+        <span class="brand-text">校园失物招领</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="publish.html">发布信息</a>
+        <a href="my-posts.html">我的发布</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <a class="back-link" href="javascript:history.back()">← 返回列表</a>
+
+    <div id="detail-area"></div>
+
+    <!-- id 缺失或不存在 -->
+    <section class="empty" id="not-found" style="display:none;">
+      <div class="emo">🤔</div>
+      <h3>未找到这条信息</h3>
+      <p>它可能已被移除，或者链接有误。</p>
+      <a class="btn btn-primary" href="index.html">回到首页</a>
+    </section>
+  </main>
+
+  <div class="footer">校园失物招领 · 联系时请说明信息编号，方便发布者核对</div>
+  <div id="toast"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>
