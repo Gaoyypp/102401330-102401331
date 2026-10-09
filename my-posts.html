@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的发布 - 校园失物招领</title>
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">🔍</span>
+        <span class="brand-text">校园失物招领</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="publish.html">发布信息</a>
+        <a href="my-posts.html">我的发布</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="page-head" style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;">
+      <div>
+        <h1>我的发布</h1>
+        <p>仅显示当前浏览器中由你发布的信息；物品找回或归还后，请及时更新状态。</p>
+      </div>
+      <a class="btn btn-primary" href="publish.html">＋ 发布新信息</a>
+    </div>
+
+    <div id="my-list"></div>
+
+    <section class="empty" id="empty" style="display:none;">
+      <div class="emo">📝</div>
+      <h3>你还没有发布过信息</h3>
+      <p>丢失物品或捡到物品时，发布一条信息可以让更多人看到。</p>
+      <a class="btn btn-primary" href="publish.html">立即发布</a>
+    </section>
+  </main>
+
+  <div class="footer">校园失物招领 · “我的发布”依据当前浏览器的本地标识识别，清除浏览器数据将丢失记录</div>
+  <div id="toast"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/my.js"></script>
+</body>
+</html>
