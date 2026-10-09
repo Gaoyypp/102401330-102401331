@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布信息 - 校园失物招领</title>
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">🔍</span>
+        <span class="brand-text">校园失物招领</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">首页</a>
+        <a href="publish.html">发布信息</a>
+        <a href="my-posts.html">我的发布</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>发布寻物 / 招领信息</h1>
+      <p>信息越完整，找回或归还的效率越高。带 <span style="color:var(--danger)">*</span> 为必填项。</p>
+    </div>
+
+    <form class="form-card" id="publish-form" novalidate>
+      <!-- 信息类型 -->
+      <div class="form-group">
+        <label>信息类型<span class="req">*</span></label>
+        <div class="type-switch" id="type-switch">
+          <div class="type-option selected-lost" data-type="lost">
+            <div class="t-ico">🧡</div>
+            <div class="t-name">寻物启事</div>
+            <div class="t-desc">我丢了东西，请求帮助寻找</div>
+          </div>
+          <div class="type-option" data-type="found">
+            <div class="t-ico">💙</div>
+            <div class="t-name">失物招领</div>
+            <div class="t-desc">我捡到了东西，寻找失主</div>
+          </div>
+        </div>
+        <input type="hidden" id="type" value="lost">
+        <div class="field-error" id="err-type"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="itemName">物品名称<span class="req">*</span></label>
+          <input class="form-control" id="itemName" maxlength="30" placeholder="如：校园卡、黑色雨伞、AirPods">
+          <div class="field-error" id="err-itemName"></div>
+        </div>
+        <div class="form-group">
+          <label for="category">物品类别<span class="req">*</span></label>
+          <select class="form-control" id="category">
+            <option value="">请选择类别</option>
+            <option value="card">证件卡片</option>
+            <option value="electronics">电子设备</option>
+            <option value="books">书籍文具</option>
+            <option value="keys">钥匙</option>
+            <option value="clothing">衣物配饰</option>
+            <option value="other">其他物品</option>
+          </select>
+          <div class="field-error" id="err-category"></div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="location">遗失 / 拾取地点<span class="req">*</span></label>
+          <input class="form-control" id="location" maxlength="30" placeholder="如：图书馆三楼、第二食堂">
+          <div class="field-error" id="err-location"></div>
+        </div>
+        <div class="form-group">
+          <label for="eventDate">遗失 / 拾取日期<span class="req">*</span></label>
+          <input class="form-control" type="date" id="eventDate">
+          <div class="field-error" id="err-eventDate"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">详细描述<span class="req">*</span>
+          <span class="hint">5~200 字，描述颜色、特征、周边情况等</span>
+        </label>
+        <textarea class="form-control" id="description" maxlength="200"
+          placeholder="如：卡面贴有哆啦A梦贴纸，今天下午在图书馆三楼靠窗座位遗失……"></textarea>
+        <div class="field-error" id="err-description"></div>
+      </div>
+
+      <div class="form-group">
+        <label>物品照片<span class="hint">选填，仅支持单张，将自动压缩保存在本机</span></label>
+        <label class="uploader" for="image">
+          📷 点击选择图片（不超过 8MB）
+          <input type="file" id="image" accept="image/*">
+          <br>
+          <img class="upload-preview" id="image-preview" alt="图片预览">
+          <span class="clear-img" id="clear-img">✖ 移除图片</span>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="contactName">联系人称呼<span class="req">*</span></label>
+          <input class="form-control" id="contactName" maxlength="10" placeholder="如：张同学">
+          <div class="field-error" id="err-contactName"></div>
+        </div>
+        <div class="form-group">
+          <label for="contact">联系方式<span class="req">*</span>
+            <span class="hint">手机号 / QQ / 微信 / 邮箱</span>
+          </label>
+          <input class="form-control" id="contact" maxlength="50" placeholder="如：13800138000 或 微信：zhang2026">
+          <div class="field-error" id="err-contact"></div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" id="btn-submit">✔ 确认发布</button>
+        <button type="reset" class="btn btn-ghost" id="btn-clear">清空重填</button>
+      </div>
+    </form>
+  </main>
+
+  <div class="footer">校园失物招领 · 发布内容仅保存在当前浏览器（localStorage）中</div>
+  <div id="toast"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/publish.js"></script>
+</body>
+</html>
