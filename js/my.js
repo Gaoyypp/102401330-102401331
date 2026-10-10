@@ -37,6 +37,7 @@
       '<div class="mi-actions">' +
         '<a class="btn btn-ghost btn-sm" href="detail.html?id=' + encodeURIComponent(p.id) + '">查看详情</a>' +
         stateBtn +
+        '<button class="btn btn-danger-outline btn-sm btn-delete" data-id="' + U.escapeHtml(p.id) + '">🗑 删除</button>' +
       '</div>' +
     '</div>';
   }
@@ -73,6 +74,18 @@
         var r = store.updateStatus(id, 'active');
         if (r.ok) { toast('已重新开放', 'success'); render(); }
         else toast(r.error || '操作失败', 'error');
+      });
+    });
+
+    list.querySelectorAll('.btn-delete').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-id');
+        var p = store.getById(id);
+        if (!p) return;
+        if (!window.confirm('确认删除「' + p.itemName + '」吗？\n删除后该信息将从列表消失且无法恢复。')) return;
+        var r = store.remove(id);
+        if (r.ok) { toast('已删除', 'success'); render(); }
+        else toast(r.error || '删除失败', 'error');
       });
     });
   }

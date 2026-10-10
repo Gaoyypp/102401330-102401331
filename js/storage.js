@@ -132,6 +132,26 @@
       return { ok: true, post: target };
     }
 
+    /**
+     * 删除信息（仅发布者本人）。
+     * @param {string} id 信息编号
+     */
+    function remove(id) {
+      var posts = getAll();
+      var idx = -1;
+      var target = null;
+      posts.forEach(function (p, i) {
+        if (p.id === id) { idx = i; target = p; }
+      });
+      if (idx === -1) return { ok: false, error: '信息不存在' };
+      if (target.publisherId !== getUserId()) {
+        return { ok: false, error: '只有发布者可以删除该信息' };
+      }
+      posts.splice(idx, 1);
+      saveAll(posts);
+      return { ok: true };
+    }
+
     /** 当前浏览器用户发布的信息（新发布在前） */
     function getMine() {
       var uid = getUserId();
@@ -236,6 +256,7 @@
       getById: getById,
       add: add,
       updateStatus: updateStatus,
+      remove: remove,
       getMine: getMine,
       canManage: canManage,
       seed: seed,
