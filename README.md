@@ -12,8 +12,8 @@
 
 | 角色 | 学号 | GitHub | 博客园地址 |
 | --- | --- | --- | --- |
-| 成员 A（仓库拥有者） | `102401330` | [Gaoyypp](https://github.com/Gaoyypp) | `（提交前替换为博客园地址）` |
-| 成员 B（Fork + Pull Request） | `102401331` | `（提交前替换为 GitHub 用户名）` | `（提交前替换为博客园地址）` |
+| 成员 A（仓库拥有者） | `102401330` | [Gaoyypp](https://github.com/Gaoyypp) | https://www.cnblogs.com/Gaoyypp/ |
+| 成员 B（Fork + Pull Request） | `102401331` | [Lameeloo](https://github.com/Lameeloo) | https://www.cnblogs.com/Lameeloo/ |
 
 > 仓库名：`102401330-102401331`（第一个学号-第二个学号）。
 
