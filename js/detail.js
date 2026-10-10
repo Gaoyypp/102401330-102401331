@@ -42,7 +42,8 @@
         : '<button class="btn btn-success btn-block" id="btn-resolve">✅ 标记为「' + endLabel + '」</button>';
       ownerPanel =
         '<div class="owner-tip">🔒 你是这条信息的发布者，可在物品找回 / 归还后更新状态，更新后其他用户将在列表和详情页看到结果。</div>' +
-        actionBtn;
+        actionBtn +
+        '<button class="btn btn-danger-outline btn-sm btn-block" id="btn-delete" style="margin-top:8px;">🗑 删除此信息</button>';
     }
 
     var html =
@@ -113,6 +114,21 @@
         var r = store.updateStatus(post.id, 'active');
         if (r.ok) { toast('已重新开放', 'success'); setTimeout(function () { location.reload(); }, 700); }
         else toast(r.error || '操作失败', 'error');
+      });
+    }
+
+    /* 发布者：删除该信息 */
+    var btnDelete = document.getElementById('btn-delete');
+    if (btnDelete) {
+      btnDelete.addEventListener('click', function () {
+        if (!window.confirm('确认删除「' + post.itemName + '」吗？\n删除后该信息将从列表消失且无法恢复。')) return;
+        var r = store.remove(post.id);
+        if (r.ok) {
+          toast('已删除', 'success');
+          setTimeout(function () { location.href = 'my-posts.html'; }, 700);
+        } else {
+          toast(r.error || '删除失败', 'error');
+        }
       });
     }
   }

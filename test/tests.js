@@ -315,6 +315,34 @@
       assert.equal(other.canManage(mine[0]), false);
       assert.equal(other.getMine().length, 0);
     });
+
+    it('remove 发布者本人可删除，删除后查不到且列表减一', function () {
+      var r = store.add(validPost({ itemName: '待删除的水杯' }));
+      var id = r.post.id;
+      var before = store.getAll().length;
+      var del = store.remove(id);
+      assert.equal(del.ok, true);
+      assert.equal(store.getById(id), null);
+      assert.equal(store.getAll().length, before - 1);
+    });
+
+    it('remove 非发布者无权删除，数据保持不变', function () {
+      var r = store.add(validPost({ itemName: '别人的雨伞' }));
+      var before = store.getAll().length;
+      var other = StoreMod.createStore(mem, { postsKey: 'test_posts', userKey: 'test_user_other' });
+      var del = other.remove(r.post.id);
+      assert.equal(del.ok, false);
+      assert.ok(del.error.indexOf('发布者') !== -1);
+      assert.equal(store.getAll().length, before, '删除应被拒绝，数量不变');
+      assert.ok(store.getById(r.post.id) !== null, '数据应仍然存在');
+    });
+
+    it('remove 删除不存在的编号返回失败', function () {
+      var before = store.getAll().length;
+      var del = store.remove('NOT-EXIST-ID');
+      assert.equal(del.ok, false);
+      assert.equal(store.getAll().length, before);
+    });
   });
 
   /* ============================= 10. 演示数据 ============================= */
